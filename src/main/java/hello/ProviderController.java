@@ -13,10 +13,13 @@ public class ProviderController {
 
     @RequestMapping("/provider/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-    	return doGreeting(name);
+    	return doGreetingWithMonitor(name);
     }
     
-    private synchronized Greeting doGreeting(String name){
+    private Greeting doGreetingWithMonitor(String name){
+    	return doGreetingInSynchronized(name);
+    }
+    private synchronized Greeting doGreetingInSynchronized(String name){
     	try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
