@@ -16,13 +16,13 @@ public class ProviderController {
     @RequestMapping("/provider/greeting")
     public Greeting greeting(
     		@RequestParam(value="name", defaultValue="Provider") String name,
-    		@RequestParam(value="sync", defaultValue="none") String sync) {
-    	return providerService.greeting(name, sync);
+    		@RequestParam(value="lock", defaultValue="none") String lock) {
+    	return providerService.greeting(name, lock);
     }
     
     @RequestMapping("/provider/exception")
-    public Greeting exception() {
-    	return providerService.exception();
+    public void exception() {
+    	providerService.exception();
     }
     
 }

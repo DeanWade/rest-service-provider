@@ -14,11 +14,11 @@ public class ProviderService {
     private final AtomicLong counter = new AtomicLong(1000);
     private final Lock lock = new ReentrantLock();
     
-    public Greeting greeting(String name, String sync) {
-    	if(sync.equals("lock")){
+    public Greeting greeting(String name, String lock) {
+    	if(lock.equals("lock")){
     		return doGreetingWithLock(name);
     	}
-    	if(sync.equals("sync")){
+    	if(lock.equals("sync")){
     		return doGreetingWithSync(name);
     	}
     	
