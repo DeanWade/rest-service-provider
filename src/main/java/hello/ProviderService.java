@@ -21,9 +21,22 @@ public class ProviderService {
     	if(lock.equals("sync")){
     		return doGreetingWithSync(name);
     	}
-    	
     	return doGreeting(name);
     }
+    
+
+	public Greeting randomUriPath(int index) {
+    	try {
+    		if(index > 0 && index % 4 == 0){
+    			Thread.sleep(4000);
+    		}else{
+    			Thread.sleep(1000);
+    		}
+		} catch (InterruptedException e) {
+			//do nothing
+		}
+    	return doGreeting("RandomUriPath");
+	}
     
     private synchronized Greeting doGreetingWithSync(String name){
     	try {
@@ -60,5 +73,6 @@ public class ProviderService {
     private Greeting doGreeting(String name){
     	return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
+
 
 }

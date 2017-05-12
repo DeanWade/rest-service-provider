@@ -1,6 +1,7 @@
 package hello;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,16 +14,20 @@ public class ProviderController {
 		this.providerService = providerService;
 	}
 	
-    @RequestMapping("/provider/greeting")
+	@GetMapping("/provider/greeting")
     public Greeting greeting(
-    		@RequestParam(value="name", defaultValue="Provider") String name,
+    		@RequestParam(value="name", defaultValue="provider") String name,
     		@RequestParam(value="lock", defaultValue="none") String lock) {
     	return providerService.greeting(name, lock);
     }
     
-    @RequestMapping("/provider/exception")
+    @GetMapping("/provider/exception")
     public void exception() {
     	providerService.exception();
     }
     
+	@GetMapping("/provider/random/{index}")
+	public Greeting randomUriPath(@PathVariable int index) {
+		return providerService.randomUriPath(index);
+	}
 }
