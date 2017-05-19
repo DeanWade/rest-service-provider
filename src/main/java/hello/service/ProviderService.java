@@ -1,4 +1,4 @@
-package hello;
+package hello.service;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -6,6 +6,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.stereotype.Service;
+
+import hello.MyException;
+import hello.model.Greeting;
 
 @Service
 public class ProviderService {
