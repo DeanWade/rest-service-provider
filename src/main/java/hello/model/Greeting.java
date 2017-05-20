@@ -1,12 +1,32 @@
 package hello.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Greeting {
+@Entity
+public class Greeting implements Serializable{
 
-    private final long id;
-    private final String content;
+	private static final long serialVersionUID = -3254983270496479171L;
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+    
+    private String content;
+    
+    public Greeting() {
+    }
+    
+    public Greeting(String content) {
+        this.content = content;
+    }
 
     public Greeting(long id, String content) {
         this.id = id;

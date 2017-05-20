@@ -5,6 +5,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import hello.MyException;
@@ -14,8 +17,12 @@ import hello.model.Greeting;
 public class ProviderService {
 
     private static final String template = "Hello, %s!";
+    private static final String namespace = "hello.provider.greeting.";
     private final AtomicLong counter = new AtomicLong(1000);
     private final Lock lock = new ReentrantLock();
+    
+	@Autowired
+	private RedisTemplate<String, Greeting> redisTemplate;
     
     public Greeting greeting(String name, String lock) {
     	if(lock.equals("lock")){
@@ -74,7 +81,15 @@ public class ProviderService {
 	}
     
     private Greeting doGreeting(String name){
-    	return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    	ValueOperations<String, Greeting> ops = this.redisTemplate.opsForValue();
+    	Greeting greeting = ops.get(namespace + name);
+    	if(greeting != null){
+    		return greeting;
+    	}else{
+    		greeting = new Greeting(counter.incrementAndGet(), String.format(template, name));
+    		ops.set(namespace + name, greeting, 60, TimeUnit.SECONDS);
+    		return greeting;
+    	}
     }
 
 
