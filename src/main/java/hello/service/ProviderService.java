@@ -58,7 +58,6 @@ public class ProviderService {
     }
     
 	private Greeting doGreetingWithLock(String name){
-//		lock.lock();
 		boolean locked = false;
     	try {
     		locked = lock.tryLock(2, TimeUnit.SECONDS);
@@ -87,7 +86,7 @@ public class ProviderService {
     		return greeting;
     	}else{
     		greeting = new Greeting(counter.incrementAndGet(), String.format(template, name));
-    		ops.set(namespace + name, greeting, 60, TimeUnit.SECONDS);
+    		ops.set(namespace + name, greeting, 600, TimeUnit.SECONDS);
     		return greeting;
     	}
     }
