@@ -21,8 +21,8 @@ public class CustomerCassandraController {
 
 	@PutMapping("/customer")
     public Customer save(
-    		@RequestParam(value="name", defaultValue="firstname") String firstname,
-    		@RequestParam(value="name", defaultValue="lastname") String lastname){
+    		@RequestParam(value="firstname", defaultValue="firstname") String firstname,
+    		@RequestParam(value="lastname", defaultValue="lastname") String lastname){
 		CustomerCassandra customer = createCustomer(firstname, lastname);
     	return getRepository().save(customer);
     }
