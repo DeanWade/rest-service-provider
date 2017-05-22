@@ -23,6 +23,7 @@ public class MongoInitializer implements CommandLineRunner {
 		this.repository.save(new CustomerMongo("Kate", "Smith"));
 		this.repository.save(new CustomerMongo("Jack", "Smith"));
 		this.repository.save(new CustomerMongo("Tom", "Smith"));
+		this.repository.save(new CustomerMongo("Type", "Mongo"));
 
 		// fetch all customers
 		System.out.println("Customers found with findAll():");
@@ -31,17 +32,17 @@ public class MongoInitializer implements CommandLineRunner {
 			System.out.println(customer);
 		}
 		System.out.println();
+		
+		/**
+		System.out.println("Customer found with findByFirstName('Alice'):");
+		System.out.println("--------------------------------");
+		System.out.println(this.repository.findByFirstName("Alice"));
 
-		// fetch an individual customer
-//		System.out.println("Customer found with findByFirstName('Alice'):");
-//		System.out.println("--------------------------------");
-//		System.out.println(this.repository.findByFirstName("Alice"));
-//
-//		System.out.println("Customers found with findByLastName('Smith'):");
-//		System.out.println("--------------------------------");
-//		for (Customer customer : this.repository.findByLastName("Smith")) {
-//			System.out.println(customer);
-//		}
+		System.out.println("Customers found with findByLastName('Smith'):");
+		System.out.println("--------------------------------");
+		for (Customer customer : this.repository.findByLastName("Smith")) {
+			System.out.println(customer);
+		}*/
 		
 	}
 	

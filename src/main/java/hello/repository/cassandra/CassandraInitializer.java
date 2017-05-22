@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import hello.model.Customer;
-import hello.repository.mongo.CustomerMongo;
 
 @Component
 public class CassandraInitializer implements CommandLineRunner {
@@ -15,7 +14,8 @@ public class CassandraInitializer implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		this.repository.deleteAll();
+		
+		this.repository.deleteAll();
 
 		// save a couple of customers
 		this.repository.save(new CustomerCassandra("Alice", "Smith"));
@@ -23,24 +23,15 @@ public class CassandraInitializer implements CommandLineRunner {
 		this.repository.save(new CustomerCassandra("Kate", "Smith"));
 		this.repository.save(new CustomerCassandra("Jack", "Smith"));
 		this.repository.save(new CustomerCassandra("Tom", "Smith"));
-
+		this.repository.save(new CustomerCassandra("Type", "Cassandra"));
+		
 		// fetch all customers
 		System.out.println("Customers found with findAll():");
+		System.out.println("-------------------------------");
 		for (Customer customer : this.repository.findAll()) {
 			System.out.println(customer);
 		}
 		System.out.println();
-
-//		// fetch an individual customer
-//		System.out.println("Customer found with findByFirstName('Alice'):");
-//		System.out.println("--------------------------------");
-//		System.out.println(this.repository.findByFirstName("Alice"));
-//
-//		System.out.println("Customers found with findByLastName('Smith'):");
-//		System.out.println("--------------------------------");
-//		for (Customer customer : this.repository.findByLastName("Smith")) {
-//			System.out.println(customer);
-//		}
 	}
 
 }

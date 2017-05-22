@@ -12,15 +12,6 @@ import hello.model.Customer;
 public class CustomerCassandra extends Customer implements Serializable{
 	
 	private static final long serialVersionUID = -3037476022129120706L;
-	
-//	@PrimaryKey
-//	private String id;
-//
-//	@Column("first_name")
-//	private String firstName;
-//	
-//	@Column("last_name")
-//	private String lastName;
 
 	public CustomerCassandra() {
 		super();

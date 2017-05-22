@@ -1,12 +1,7 @@
 package hello.repository.cassandra;
 
-import java.util.List;
-
-import org.springframework.data.cassandra.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import hello.model.Customer;
 
 @Repository
 public interface CustomerCassandraRepository extends CrudRepository<CustomerCassandra, String> {

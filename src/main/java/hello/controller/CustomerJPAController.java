@@ -13,7 +13,7 @@ import hello.repository.jpa.CustomerJPA;
 import hello.repository.jpa.CustomerJPARepository;
 
 @RestController
-@RequestMapping(value="/repository/mongo", produces = "application/json")
+@RequestMapping(value="/repository/database", produces = "application/json")
 public class CustomerJPAController {
     
     @Autowired
