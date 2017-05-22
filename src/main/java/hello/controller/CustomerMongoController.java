@@ -14,7 +14,7 @@ import hello.repository.mongo.CustomerMongoRepository;
 
 @RestController
 @RequestMapping(value="/repository/database", produces = "application/json")
-public class CustomerMongoController extends CustomerController {
+public class CustomerMongoController {
     
     @Autowired
     private CustomerMongoRepository repository;
@@ -23,21 +23,20 @@ public class CustomerMongoController extends CustomerController {
     public Customer save(
     		@RequestParam(value="name", defaultValue="firstname") String firstname,
     		@RequestParam(value="name", defaultValue="lastname") String lastname){
-    	return super.save(firstname, lastname);
+		CustomerMongo customer = createCustomer(firstname, lastname);
+    	return getRepository().save(customer);
     }
     
 	@GetMapping("/customer/all")
-    public Iterable<Customer> findAll(){
-    	return super.findAll();
+    public Iterable<CustomerMongo> findAll(){
+		return getRepository().findAll();
     }
-
-	@Override
-	protected CrudRepository<Customer, String> getRepository() {
+	
+	protected CrudRepository<CustomerMongo, String> getRepository() {
 		return repository;
 	}
 	
-	@Override
-	protected Customer createCustomer(String firstName, String lastName) {
+	protected CustomerMongo createCustomer(String firstName, String lastName) {
 		return new CustomerMongo(firstName, lastName);
 	}
 	

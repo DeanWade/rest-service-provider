@@ -14,7 +14,7 @@ import hello.repository.cassandra.CustomerCassandraRepository;
 
 @RestController
 @RequestMapping(value="/repository/cassandra", produces = "application/json")
-public class CustomerCassandraController extends CustomerController {
+public class CustomerCassandraController {
     
     @Autowired
     private CustomerCassandraRepository repository;
@@ -23,21 +23,21 @@ public class CustomerCassandraController extends CustomerController {
     public Customer save(
     		@RequestParam(value="name", defaultValue="firstname") String firstname,
     		@RequestParam(value="name", defaultValue="lastname") String lastname){
-    	return super.save(firstname, lastname);
-    }
-    
-	@GetMapping("/customer/all")
-    public Iterable<Customer> findAll(){
-    	return super.findAll();
+		CustomerCassandra customer = createCustomer(firstname, lastname);
+    	return getRepository().save(customer);
     }
 
-	@Override
-	protected CrudRepository<Customer, String> getRepository() {
+
+	@GetMapping("/customer/all")
+    public Iterable<CustomerCassandra> findAll(){
+    	return getRepository().findAll();
+    }
+    
+	private CrudRepository<CustomerCassandra, String> getRepository() {
 		return repository;
 	}
 	
-	@Override
-	protected Customer createCustomer(String firstName, String lastName) {
+	protected CustomerCassandra createCustomer(String firstName, String lastName) {
 		return new CustomerCassandra(firstName, lastName);
 	}
 	

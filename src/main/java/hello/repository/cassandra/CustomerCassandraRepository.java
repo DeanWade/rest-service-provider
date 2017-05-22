@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import hello.model.Customer;
 
 @Repository
-public interface CustomerCassandraRepository extends CrudRepository<Customer, String> {
+public interface CustomerCassandraRepository extends CrudRepository<CustomerCassandra, String> {
 
 //	@Query("Select * from customer where firstname=?0 ALLOW FILTERING")
 //	Customer findByFirstName(String firstName);

@@ -18,11 +18,11 @@ public class CassandraInitializer implements CommandLineRunner {
 //		this.repository.deleteAll();
 
 		// save a couple of customers
-		this.repository.save(new CustomerMongo("Alice", "Smith"));
-		this.repository.save(new CustomerMongo("Bob", "Smith"));
-		this.repository.save(new CustomerMongo("Kate", "Smith"));
-		this.repository.save(new CustomerMongo("Jack", "Smith"));
-		this.repository.save(new CustomerMongo("Tom", "Smith"));
+		this.repository.save(new CustomerCassandra("Alice", "Smith"));
+		this.repository.save(new CustomerCassandra("Bob", "Smith"));
+		this.repository.save(new CustomerCassandra("Kate", "Smith"));
+		this.repository.save(new CustomerCassandra("Jack", "Smith"));
+		this.repository.save(new CustomerCassandra("Tom", "Smith"));
 
 		// fetch all customers
 		System.out.println("Customers found with findAll():");
