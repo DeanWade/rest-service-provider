@@ -1,15 +1,15 @@
-package hello.dao;
+package hello.repository.jpa;
 
 import java.util.List;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import hello.model.Customer;
 
 @Repository
-public interface CustomerRepository extends MongoRepository<Customer, String>{
-
+public interface CustomerJPARepository extends CrudRepository<Customer, String> {
+	
 	Customer findByFirstName(String firstName);
 
 	List<Customer> findByLastName(String lastName);

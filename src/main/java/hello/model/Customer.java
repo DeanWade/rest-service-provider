@@ -1,32 +1,26 @@
 package hello.model;
 
-import java.io.Serializable;
+import java.util.UUID;
 
-import org.springframework.data.annotation.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Customer implements Serializable{
+public abstract class Customer{
 	
-	private static final long serialVersionUID = -3037476022129120706L;
+	protected String id;
 
-	@Id
-	private String id;
-
-	private String firstName;
+	protected String firstName;
 	
-	private String lastName;
+	protected String lastName;
 
 	public Customer() {
 	}
-	
-	public Customer(String firstName) {
-		this.firstName = firstName;
-		this.lastName = "lastname";
-	}
 
 	public Customer(String firstName, String lastName) {
+		this.id = UUID.randomUUID().toString();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	public Customer(String id, String firstName, String lastName) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
@@ -57,6 +51,6 @@ public class Customer implements Serializable{
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%s, firstName='%s', lastName='%s']", id, firstName, lastName);
+		return String.format(this.getClass().getSimpleName() +": [id=%s, firstName='%s', lastName='%s']", id, firstName, lastName);
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import hello.model.Greeting;
 
 @Configuration
+//@EnableRedisRepositories("")
 public class RedisConfig {
 	
 	@Bean

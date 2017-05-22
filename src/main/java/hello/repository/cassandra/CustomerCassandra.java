@@ -1,0 +1,47 @@
+package hello.repository.cassandra;
+
+import java.io.Serializable;
+
+import org.springframework.data.cassandra.mapping.Column;
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
+
+import hello.model.Customer;
+
+@Table
+public class CustomerCassandra extends Customer implements Serializable{
+	
+	private static final long serialVersionUID = -3037476022129120706L;
+	
+//	@PrimaryKey
+//	private String id;
+//
+//	@Column("first_name")
+//	private String firstName;
+//	
+//	@Column("last_name")
+//	private String lastName;
+
+	public CustomerCassandra() {
+		super();
+	}
+
+	public CustomerCassandra(String firstName, String lastName) {
+		super(firstName, lastName);
+	}
+
+	@PrimaryKey
+	public String getId() {
+		return id;
+	}
+
+	@Column("first_name")
+	public String getFirstName() {
+		return firstName;
+	}
+
+	@Column("last_name")
+	public String getLastName() {
+		return lastName;
+	}
+}
