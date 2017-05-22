@@ -32,16 +32,16 @@ public class CustomerCassandra extends Customer implements Serializable{
 
 	@PrimaryKey
 	public String getId() {
-		return id;
+		return super.getId();
 	}
 
 	@Column("first_name")
 	public String getFirstName() {
-		return firstName;
+		return super.getFirstName();
 	}
 
 	@Column("last_name")
 	public String getLastName() {
-		return lastName;
+		return super.getLastName();
 	}
 }

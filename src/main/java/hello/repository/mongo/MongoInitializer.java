@@ -9,14 +9,11 @@ import hello.model.Customer;
 @Component
 public class MongoInitializer implements CommandLineRunner {
 
-	@Autowired(required=false)
+	@Autowired
 	private CustomerMongoRepository repository;
 	
 	@Override
 	public void run(String... args) throws Exception {
-		if(repository == null){
-			return;
-		}
 		
 		this.repository.deleteAll();
 		
@@ -36,15 +33,15 @@ public class MongoInitializer implements CommandLineRunner {
 		System.out.println();
 
 		// fetch an individual customer
-		System.out.println("Customer found with findByFirstName('Alice'):");
-		System.out.println("--------------------------------");
-		System.out.println(this.repository.findByFirstName("Alice"));
-
-		System.out.println("Customers found with findByLastName('Smith'):");
-		System.out.println("--------------------------------");
-		for (Customer customer : this.repository.findByLastName("Smith")) {
-			System.out.println(customer);
-		}
+//		System.out.println("Customer found with findByFirstName('Alice'):");
+//		System.out.println("--------------------------------");
+//		System.out.println(this.repository.findByFirstName("Alice"));
+//
+//		System.out.println("Customers found with findByLastName('Smith'):");
+//		System.out.println("--------------------------------");
+//		for (Customer customer : this.repository.findByLastName("Smith")) {
+//			System.out.println(customer);
+//		}
 		
 	}
 	

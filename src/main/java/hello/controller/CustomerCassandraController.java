@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hello.model.Customer;
-import hello.repository.mongo.CustomerMongo;
-import hello.repository.mongo.CustomerMongoRepository;
+import hello.repository.cassandra.CustomerCassandra;
+import hello.repository.cassandra.CustomerCassandraRepository;
 
 @RestController
-@RequestMapping(value="/repository/database", produces = "application/json")
-public class CustomerMongoController extends CustomerController {
+@RequestMapping(value="/repository/cassandra", produces = "application/json")
+public class CustomerCassandraController extends CustomerController {
     
     @Autowired
-    private CustomerMongoRepository repository;
+    private CustomerCassandraRepository repository;
 
 	@PutMapping("/customer")
     public Customer save(
@@ -38,7 +38,7 @@ public class CustomerMongoController extends CustomerController {
 	
 	@Override
 	protected Customer createCustomer(String firstName, String lastName) {
-		return new CustomerMongo(firstName, lastName);
+		return new CustomerCassandra(firstName, lastName);
 	}
 	
 }

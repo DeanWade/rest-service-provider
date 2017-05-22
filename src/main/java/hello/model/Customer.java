@@ -4,11 +4,11 @@ import java.util.UUID;
 
 public abstract class Customer{
 	
-	protected String id;
+	private String id;
 
-	protected String firstName;
+	private String firstName;
 	
-	protected String lastName;
+	private String lastName;
 
 	public Customer() {
 	}

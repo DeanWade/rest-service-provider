@@ -9,41 +9,39 @@ import hello.model.Customer;
 @Component
 public class DatabaseInitializer implements CommandLineRunner {
 	
-	@Autowired(required=false)
+	@Autowired
 	private CustomerJPARepository customerRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		
-		if(customerRepository != null){
-			this.customerRepository.deleteAll();
-			
-			// save a couple of customers
-			this.customerRepository.save(new CustomerJPA("Alice", "Smith"));
-			this.customerRepository.save(new CustomerJPA("Bob", "Smith"));
-			this.customerRepository.save(new CustomerJPA("Kate", "Smith"));
-			this.customerRepository.save(new CustomerJPA("Jack", "Smith"));
-			this.customerRepository.save(new CustomerJPA("Tom", "Smith"));
+		this.customerRepository.deleteAll();
+		
+		// save a couple of customers
+		this.customerRepository.save(new CustomerJPA("Alice", "Smith"));
+		this.customerRepository.save(new CustomerJPA("Bob", "Smith"));
+		this.customerRepository.save(new CustomerJPA("Kate", "Smith"));
+		this.customerRepository.save(new CustomerJPA("Jack", "Smith"));
+		this.customerRepository.save(new CustomerJPA("Tom", "Smith"));
 
-			// fetch all customers
-			System.out.println("Customers found with findAll():");
-			System.out.println("-------------------------------");
-			for (Customer customer : this.customerRepository.findAll()) {
-				System.out.println(customer);
-			}
-			System.out.println();
-
-			// fetch an individual customer
-			System.out.println("Customer found with findByFirstName('Alice'):");
-			System.out.println("--------------------------------");
-			System.out.println(this.customerRepository.findByFirstName("Alice"));
-
-			System.out.println("Customers found with findByLastName('Smith'):");
-			System.out.println("--------------------------------");
-			for (Customer customer : this.customerRepository.findByLastName("Smith")) {
-				System.out.println(customer);
-			}
+		// fetch all customers
+		System.out.println("Customers found with findAll():");
+		System.out.println("-------------------------------");
+		for (Customer customer : this.customerRepository.findAll()) {
+			System.out.println(customer);
 		}
+		System.out.println();
+
+//		// fetch an individual customer
+//		System.out.println("Customer found with findByFirstName('Alice'):");
+//		System.out.println("--------------------------------");
+//		System.out.println(this.customerRepository.findByFirstName("Alice"));
+//
+//		System.out.println("Customers found with findByLastName('Smith'):");
+//		System.out.println("--------------------------------");
+//		for (Customer customer : this.customerRepository.findByLastName("Smith")) {
+//			System.out.println(customer);
+//		}
 		
 	}
 	

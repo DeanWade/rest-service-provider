@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hello.model.Customer;
-import hello.repository.mongo.CustomerMongo;
-import hello.repository.mongo.CustomerMongoRepository;
+import hello.repository.CustomerRepository;
+import hello.repository.jpa.CustomerJPA;
+import hello.repository.jpa.CustomerJPARepository;
 
 @RestController
-@RequestMapping(value="/repository/database", produces = "application/json")
-public class CustomerMongoController extends CustomerController {
+@RequestMapping(value="/repository/mongo", produces = "application/json")
+public class CustomerJPAController extends CustomerController {
     
     @Autowired
-    private CustomerMongoRepository repository;
+    private CustomerJPARepository repository;
 
 	@PutMapping("/customer")
     public Customer save(
@@ -38,7 +39,7 @@ public class CustomerMongoController extends CustomerController {
 	
 	@Override
 	protected Customer createCustomer(String firstName, String lastName) {
-		return new CustomerMongo(firstName, lastName);
+		return new CustomerJPA(firstName, lastName);
 	}
 	
 }

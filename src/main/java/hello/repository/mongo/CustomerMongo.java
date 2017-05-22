@@ -30,17 +30,18 @@ public class CustomerMongo extends Customer implements Serializable{
 	}
 	
 	@Id
-	public void setId(String id) {
-		super.setId(id);
+	public String getId() {
+		return super.getId();
+	}
+
+	@Field("first_name")
+	public String getFirstName() {
+		return super.getFirstName();
 	}
 
 	@Field("last_name")
-	public void setFirstName(String firstName) {
-		super.setFirstName(firstName);
+	public String getLastName() {
+		return super.getLastName();
 	}
-	
-	@Field("last_name")
-	public void setLastName(String lastName) {
-		super.setLastName(lastName);
-	}
+
 }

@@ -31,16 +31,16 @@ public class CustomerJPA extends Customer implements Serializable{
 	
 	@Id
 	public String getId() {
-		return id;
+		return super.getId();
 	}
 
 	@Column(name="first_name")
 	public String getFirstName() {
-		return firstName;
+		return super.getFirstName();
 	}
 	
 	@Column(name="last_name")
 	public String getLastName() {
-		return lastName;
+		return super.getLastName();
 	}
 }
