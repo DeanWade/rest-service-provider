@@ -13,7 +13,7 @@ import hello.repository.cassandra.CustomerCassandra;
 import hello.repository.cassandra.CustomerCassandraRepository;
 
 @RestController
-@RequestMapping(value="/repository/cassandra", produces = "application/json")
+@RequestMapping(value="/provider/cassandra", produces = "application/json")
 public class CustomerCassandraController {
     
     @Autowired

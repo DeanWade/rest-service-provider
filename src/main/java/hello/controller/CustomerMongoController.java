@@ -13,7 +13,7 @@ import hello.repository.mongo.CustomerMongo;
 import hello.repository.mongo.CustomerMongoRepository;
 
 @RestController
-@RequestMapping(value="/repository/mongo", produces = "application/json")
+@RequestMapping(value="/provider/mongo", produces = "application/json")
 public class CustomerMongoController {
     
     @Autowired
